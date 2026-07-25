@@ -9,12 +9,15 @@ st.set_page_config(
     layout="wide"
 )
 
+# Fetch API Key from Streamlit Secrets if configured, otherwise fall back to empty string
+default_api_key = st.secrets.get("GROQ_API_KEY", "")
+
 # Sidebar - Configuration & Credentials
 with st.sidebar:
     st.title("🛡️ GitGuard Config")
-    # Updated label & help text for Groq
     api_key = st.text_input(
         "Groq API Key", 
+        value=default_api_key,
         type="password", 
         help="Get your 100% free API key from console.groq.com"
     )
