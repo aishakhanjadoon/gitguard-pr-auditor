@@ -37,10 +37,14 @@ Driven by OpenAI's `gpt-4o-mini` model with strict JSON response formatting.
 ---
 
 ## 📸 App Screenshots
-*(Take 3 screenshots of your deployed live app and link them here)*
+
 1. **Input Interface & Sidebar Configuration**
-2. **AI Risk Assessment & Metrics Dashboard**
-3. **Generated Test Stubs Output**
+ <img width="1920" height="867" alt="image" src="https://github.com/user-attachments/assets/2ebaffd5-cc46-437a-aea1-cb4f0d85eb72" />
+3. **AI Risk Assessment & Metrics Dashboard**
+ <img width="1550" height="875" alt="image" src="https://github.com/user-attachments/assets/67f35739-4d7d-4051-ac23-7b48e9331348" />
+5. **Generated Test Stubs Output**
+ <img width="1543" height="882" alt="image" src="https://github.com/user-attachments/assets/ad91a59a-a206-4299-964a-790b50bb3643" />
+
 
 ---
 
