@@ -50,3 +50,11 @@ Driven by OpenAI's `gpt-4o-mini` model with strict JSON response formatting.
    ```bash
    git clone [https://github.com/YOUR_USERNAME/gitguard-pr-auditor.git](https://github.com/YOUR_USERNAME/gitguard-pr-auditor.git)
    cd gitguard-pr-auditor
+2. Install dependencies:
+
+Bash
+pip install -r requirements.txt
+Run the Streamlit application:
+
+Bash
+streamlit run app.py
