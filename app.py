@@ -12,7 +12,12 @@ st.set_page_config(
 # Sidebar - Configuration & Credentials
 with st.sidebar:
     st.title("🛡️ GitGuard Config")
-    api_key = st.text_input("OpenAI API Key", type="password", help="Enter your key to analyze code.")
+    # Updated label & help text for Groq
+    api_key = st.text_input(
+        "Groq API Key", 
+        type="password", 
+        help="Get your 100% free API key from console.groq.com"
+    )
     st.markdown("---")
     st.markdown("### About")
     st.info("GitGuard helps developers audit raw code diffs or Pull Requests before merging, detecting safety risks and missing test cases in seconds.")
@@ -38,13 +43,17 @@ if "test_stubs" not in st.session_state:
 # Action Button
 if st.button("🚀 Run AI Safety Audit", type="primary", use_container_width=True):
     if not api_key:
-        st.error("Please enter an OpenAI API key in the sidebar.")
+        st.error("Please enter your free Groq API key in the sidebar.")
     elif not code_input.strip():
         st.warning("Please paste some code or diff to analyze.")
     else:
         with st.status("🔍 Auditing code base...", expanded=True) as status:
             try:
-                client = OpenAI(api_key=api_key)
+                # Point OpenAI client to Groq's endpoint
+                client = OpenAI(
+                    api_key=api_key,
+                    base_url="https://api.groq.com/openai/v1"
+                )
                 
                 system_prompt = """
                 You are a Senior Security Auditor and QA Architect.
@@ -56,8 +65,9 @@ if st.button("🚀 Run AI Safety Audit", type="primary", use_container_width=Tru
                 - "risk_score": Integer from 1 (Safe) to 10 (Critical Risk)
                 """
                 
+                # Using Llama 3.3 70B via Groq
                 response = client.chat.completions.create(
-                    model="gpt-4o-mini",
+                    model="llama-3.3-70b-versatile",
                     temperature=0.2,
                     response_format={"type": "json_object"},
                     messages=[
@@ -111,9 +121,12 @@ if st.session_state.analysis:
             
         if st.button("🧪 Generate PyTest Stubs", use_container_width=True):
             with st.spinner("Generating automated test stubs..."):
-                client = OpenAI(api_key=api_key)
+                client = OpenAI(
+                    api_key=api_key,
+                    base_url="https://api.groq.com/openai/v1"
+                )
                 stub_response = client.chat.completions.create(
-                    model="gpt-4o-mini",
+                    model="llama-3.3-70b-versatile",
                     messages=[
                         {"role": "system", "content": "You are a QA automation engineer. Generate clean pytest code for missing tests."},
                         {"role": "user", "content": f"Code:\n{code_input}\n\nGaps:\n{missing}"}
