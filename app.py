@@ -9,18 +9,37 @@ st.set_page_config(
     layout="wide"
 )
 
-# Fetch API Key from Streamlit Secrets if configured, otherwise fall back to empty string
+# Custom CSS to permanently hide the 'unhide / eye icon' on password fields
+st.markdown(
+    """
+    <style>
+    /* Hide the password visibility toggle button across browsers */
+    button[aria-label="Show password"],
+    button[aria-label="Hide password"],
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+        display: none !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Fetch API Key from Streamlit Secrets if configured
 default_api_key = st.secrets.get("GROQ_API_KEY", "")
 
 # Sidebar - Configuration & Credentials
 with st.sidebar:
     st.title("🛡️ GitGuard Config")
+    
+    # Password field with unhide icon removed via CSS
     api_key = st.text_input(
         "Groq API Key", 
         value=default_api_key,
         type="password", 
         help="Get your 100% free API key from console.groq.com"
     )
+    
     st.markdown("---")
     st.markdown("### About")
     st.info("GitGuard helps developers audit raw code diffs or Pull Requests before merging, detecting safety risks and missing test cases in seconds.")
