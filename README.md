@@ -1,6 +1,6 @@
 # 🛡️ GitGuard: AI-Powered Code Risk & PR Auditor
 
-**Live App URL:** [Paste Your Live Streamlit URL Here](https://your-app-url.streamlit.app)
+**Live App URL:** [https://gitguard-pr-auditor.streamlit.app/](https://gitguard-pr-auditor.streamlit.app/)
 
 ---
 
